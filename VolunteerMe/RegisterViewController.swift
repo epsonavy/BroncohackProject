@@ -84,7 +84,7 @@ class RegisterViewController: UITableViewController {
         if indexPath.row == 1 {
             if let width = userInfo?.photoWidth, height = userInfo?.photoHeight {
                 let heightRatio = height / width
-                return screenWidth * heightRatio / 2 + 20
+                return screenWidth * heightRatio / 2
             }
         }
         

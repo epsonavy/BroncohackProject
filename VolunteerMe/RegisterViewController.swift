@@ -17,11 +17,24 @@ class RegisterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500.0
+    
         
         initializeUI()
+        
+    }
+    
+    func tapButton () {
+        
+        let input1 = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 0)) as! InputViewCell
+        let name = input1.inputArea.text!
+        let input2 = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 4, inSection: 0)) as! Input2ViewCell
+        let phone = input2.inputArea.text!
+        let input3 = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 5, inSection: 0)) as! Input3ViewCell
+        let state = input3.inputArea.text!
+        let input4 = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 6, inSection: 0)) as! Input4ViewCell
+        let city = input4.inputArea.text!
     }
     
     func initializeUI() {
@@ -31,13 +44,14 @@ class RegisterViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 9
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("HeaderViewCell", forIndexPath: indexPath) as! HeaderViewCell
             cell.header.text = "Photo"
+            cell.line.alpha = 0
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("PhotoViewCell", forIndexPath: indexPath) as! PhotoViewCell
@@ -61,11 +75,9 @@ class RegisterViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier("Input4ViewCell", forIndexPath: indexPath) as! Input4ViewCell
 
             return cell
-        }  else if indexPath.row == 7 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("CheckViewCell", forIndexPath: indexPath) as! CheckViewCell
-            return cell
-        } else if indexPath.row == 8 {
+        } else if indexPath.row == 7 {
             let cell = tableView.dequeueReusableCellWithIdentifier("ButtonViewCell", forIndexPath: indexPath) as! ButtonViewCell
+            cell.registerButton.addTarget(self, action: #selector(tapButton), forControlEvents: .TouchUpInside)
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("BottomViewCell", forIndexPath: indexPath) as! BottomViewCell
@@ -77,7 +89,7 @@ class RegisterViewController: UITableViewController {
      
         // for header
         if indexPath.row == 0 || indexPath.row == 2 {
-            return 25
+            return 30
         }
         
         // for photo
@@ -89,7 +101,7 @@ class RegisterViewController: UITableViewController {
         }
         
         // for button
-        if indexPath.row == 8 {
+        if indexPath.row == 7 {
             return 80
         }
         return UITableViewAutomaticDimension

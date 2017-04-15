@@ -10,6 +10,7 @@ import UIKit
 
 class HeaderViewCell: UITableViewCell {
 
+    @IBOutlet weak var line: UIView!
     @IBOutlet weak var header: UILabel!
     
     override func awakeFromNib() {
